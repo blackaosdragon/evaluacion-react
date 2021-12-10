@@ -1,0 +1,35 @@
+.button-next {
+  color: white;
+  box-shadow: 1px 1px 10px gray;
+  background-color: black;
+  padding: 0% 0% 0% 0%;
+
+  transition: 1s;
+}
+.button-back {
+  color: white;
+  box-shadow: 1px 1px 10px gray;
+  background-color: black;
+  padding: 0% 0% 0% 0%;
+
+  transition: 1s;
+}
+.button-back:hover {
+  cursor: pointer;
+  transition: 2s;
+  background-color: white;
+  color: black;
+}
+.button-next:hover {
+  cursor: pointer;
+  transition: 2s;
+  background-color: white;
+  color: black;
+}
+.botones {
+  display: flex;
+  justify-content: space-evenly;
+}
+th {
+  margin: 0% 10% 0% 0%;
+}
