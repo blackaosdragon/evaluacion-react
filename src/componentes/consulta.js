@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@mui/material'
 import './consulta.css'
+import './consulta.scss'
 
 class Consulta extends Component{
     state = {
@@ -57,30 +59,34 @@ class Consulta extends Component{
                 if(index<this.state.pages && index>this.state.pages-10){
                     if(element.probabilityofprecip>=60 || element.relativehumidity>50){
                         return(
-                            <tr>
-                                <td onClick={this.desplegar}>{element._id}</td>
-                                <td>{element.cityid}</td>
-                                <td>{element.name}</td>
-                                <td>{element.state}</td>
-                                <td>{element.probabilityofprecip}</td>
-                                <td>{element.relativehumidity}</td>
-                                <td>{element.lastreporttime}</td>
-                                <td>Sí</td>
-                            </tr>
+                            <TableBody className='tabla-temperaturas'>
+                                <TableRow >
+                                <TableCell onClick={this.desplegar}>{element._id}</TableCell>
+                                <TableCell>{element.cityid}</TableCell>
+                                <TableCell>{element.name}</TableCell>
+                                <TableCell>{element.state}</TableCell>
+                                <TableCell>{element.probabilityofprecip}</TableCell>
+                                <TableCell>{element.relativehumidity}</TableCell>
+                                <TableCell>{element.lastreporttime}</TableCell>
+                                <TableCell>Sí</TableCell>
+                                </TableRow>
+                            </TableBody>
                         )
     
                     } else {
                         return(
-                            <tr>
-                                <td>{element._id}</td>
-                                <td>{element.cityid}</td>
-                                <td>{element.name}</td>
-                                <td>{element.state}</td>
-                                <td>{element.probabilityofprecip}</td>
-                                <td>{element.relativehumidity}</td>
-                                <td>{element.lastreporttime}</td>
-                                <td>No</td>
-                            </tr>
+                            <TableBody className='tabla-temperaturas'>
+                                <TableRow>
+                                <TableCell >{element._id}</TableCell>
+                                <TableCell>{element.cityid}</TableCell>
+                                <TableCell>{element.name}</TableCell>
+                                <TableCell>{element.state}</TableCell>
+                                <TableCell>{element.probabilityofprecip}</TableCell>
+                                <TableCell>{element.relativehumidity}</TableCell>
+                                <TableCell>{element.lastreporttime}</TableCell>
+                                <TableCell>No</TableCell>
+                                </TableRow>
+                            </TableBody>
                         )
     
                     }
@@ -93,68 +99,91 @@ class Consulta extends Component{
         }
         if(this.state.pages>10 && this.state.pages<90){
             return(
-                <div>
-                    <tr>
-                        <th>_id</th>
-                        <th>cityid</th>
-                        <th>name</th>
-                        <th>state</th>
-                        <th>probabilityofprecip</th>
-                        <th>relativehumidity</th>
-                        <th>Lastreporttime</th>
-                        <th>Llueve</th>
-                    </tr>
+                <TableContainer>
+                    <Table>
+                    <TableHead className='tabla-titulo'>
+                    
+                    <TableRow >
+                        
+                    <p className='texto-titulo'><TableCell>_id</TableCell></p>
+                        <TableCell style={{color: 'white'}}>cityid</TableCell>
+                        <TableCell>name</TableCell>
+                        <TableCell>state</TableCell>
+                        <TableCell>probabilityofprecip</TableCell>
+                        <TableCell>relativehumidity</TableCell>
+                        <TableCell>Lastreporttime</TableCell>
+                        <TableCell>Llueve</TableCell>
+                        
+                    </TableRow>
+                    
+                    </TableHead>
                     {tabla}
                     <div className='botones'>
                     <div onClick={this.atras} className='button-back'>Atras</div>
                     <div onClick={this.siguiente} className='button-next'>Siguiente</div>
                     
                     </div>
-                    
-                </div>
+                    </Table>
+                </TableContainer>
             )
         } else if(this.state.pages>=90){
             console.log("Entr!")
             return(
-                <div>
-                    <tr>
-                        <th>_id</th>
-                        <th>cityid</th>
-                        <th>name</th>
-                        <th>state</th>
-                        <th>probabilityofprecip</th>
-                        <th>relativehumidity</th>
-                        <th>Lastreporttime</th>
-                        <th>Llueve</th>
-                    </tr>
+                <TableContainer>
+                    <Table>
+                    <TableHead className='tabla-titulo'>
+                    
+                        <TableRow >
+                        
+                        <TableCell >_id</TableCell>
+                        <TableCell>cityid</TableCell>
+                        <TableCell>name</TableCell>
+                        <TableCell>state</TableCell>
+                        <TableCell>probabilityofprecip</TableCell>
+                        <TableCell>relativehumidity</TableCell>
+                        <TableCell>Lastreporttime</TableCell>
+                        <TableCell>Llueve</TableCell>
+                        
+                        </TableRow>
+                        
+                    </TableHead>
                     {tabla}
                     <div className='botones'>
                     
                     <div onClick={this.atras} className='button-back'>Atras</div>
                     
                     </div>
-                </div>
+                    </Table>
+                </TableContainer>
             )
         } else {
             return(
-                <div>
-                    <tr>
-                        <th>_id</th>
-                        <th>cityid</th>
-                        <th>name</th>
-                        <th>state</th>
-                        <th>probabilityofprecip</th>
-                        <th>relativehumidity</th>
-                        <th>Lastreporttime</th>
-                        <th>Llueve</th>
-                    </tr>
+                <TableContainer>
+                    <Table>
+                    <TableHead className='tabla-titulo'>
+                    
+                    <TableRow >
+                    
+                        <TableCell>_id</TableCell>
+                        <TableCell>cityid</TableCell>
+                        <TableCell>name</TableCell>
+                        <TableCell>state</TableCell>
+                        <TableCell>probabilityofprecip</TableCell>
+                        <TableCell>relativehumidity</TableCell>
+                        <TableCell>Lastreporttime</TableCell>
+                        <TableCell>Llueve</TableCell>
+                        
+                    </TableRow>
+                    
+                    </TableHead>
                     {tabla}
                     <div className='botones'>
                     
                     <div onClick={this.siguiente} className='button-next'>Siguiente</div>
                     
                     </div>
-                </div>
+                    </Table>
+                </TableContainer>
             )
 
         }

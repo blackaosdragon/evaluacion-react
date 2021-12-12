@@ -1,0 +1,23 @@
+//variables
+$colorPrincipal: aqua;
+$titleTable: black;
+$titleColor: white;
+.titulo-tabla {
+  background-color: $colorPrincipal;
+}
+.tabla {
+  margin: 0% 5% 0% 5%;
+}
+.tabla-titulo {
+  background-color: $colorPrincipal;
+  color: $titleColor;
+}
+.texto-titulo {
+  color: $titleColor;
+}
+p {
+  color: $titleColor;
+}
+tr {
+  color: $titleColor;
+}
