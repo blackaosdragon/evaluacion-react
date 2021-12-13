@@ -26,10 +26,3 @@
   background-color: white;
   color: black;
 }
-.botones {
-  display: flex;
-  justify-content: space-evenly;
-}
-th {
-  margin: 0% 10% 0% 0%;
-}

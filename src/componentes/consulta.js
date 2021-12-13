@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './consulta.css'
+import './consulta.scss'
 
 class Consulta extends Component{
     state = {
@@ -62,7 +63,7 @@ class Consulta extends Component{
                                 <td>{element.cityid}</td>
                                 <td>{element.name}</td>
                                 <td>{element.state}</td>
-                                <td>{element.probabilityofprecip}</td>
+                                <td className='celda-humedad'>{element.probabilityofprecip}</td>
                                 <td>{element.relativehumidity}</td>
                                 <td>{element.lastreporttime}</td>
                                 <td>Sí</td>
@@ -76,7 +77,7 @@ class Consulta extends Component{
                                 <td>{element.cityid}</td>
                                 <td>{element.name}</td>
                                 <td>{element.state}</td>
-                                <td>{element.probabilityofprecip}</td>
+                                <td className='celda-humedad'>{element.probabilityofprecip}</td>
                                 <td>{element.relativehumidity}</td>
                                 <td>{element.lastreporttime}</td>
                                 <td>No</td>
@@ -94,20 +95,24 @@ class Consulta extends Component{
         if(this.state.pages>10 && this.state.pages<90){
             return(
                 <div>
-                    <tr>
-                        <th>_id</th>
-                        <th>cityid</th>
-                        <th>name</th>
-                        <th>state</th>
-                        <th>probabilityofprecip</th>
-                        <th>relativehumidity</th>
-                        <th>Lastreporttime</th>
-                        <th>Llueve</th>
-                    </tr>
-                    {tabla}
+                    <table>
+                    <thead>
+                        <tr className='tabla-titulos'>
+                            <th >_id</th>
+                            <th >cityid</th>
+                            <th >name</th>
+                            <th >state</th>
+                            <th className='celda-titulo'>probabilityofprecip</th>
+                            <th >relativehumidity</th>
+                            <th>Lastreporttime</th>
+                            <th >Llueve</th>
+                        </tr>
+                        </thead>
+                        {tabla}
+                    </table>
                     <div className='botones'>
-                    <div onClick={this.atras} className='button-back'>Atras</div>
-                    <div onClick={this.siguiente} className='button-next'>Siguiente</div>
+                    <div onClick={this.atras} className='button'>Atras</div>
+                    <div onClick={this.siguiente} className='button'>Siguiente</div>
                     
                     </div>
                     
@@ -117,20 +122,24 @@ class Consulta extends Component{
             console.log("Entr!")
             return(
                 <div>
-                    <tr>
-                        <th>_id</th>
-                        <th>cityid</th>
-                        <th>name</th>
-                        <th>state</th>
-                        <th>probabilityofprecip</th>
-                        <th>relativehumidity</th>
-                        <th>Lastreporttime</th>
-                        <th>Llueve</th>
+                    <table>
+                        <thead>
+                    <tr className='tabla-titulos'>
+                        <th >_id</th>
+                        <th >cityid</th>
+                        <th >name</th>
+                        <th >state</th>
+                        <th className='celda-titulo'>probabilityofprecip</th>
+                        <th >relativehumidity</th>
+                        <th >Lastreporttime</th>
+                        <th >Llueve</th>
                     </tr>
+                    </thead>
                     {tabla}
+                    </table>
                     <div className='botones'>
                     
-                    <div onClick={this.atras} className='button-back'>Atras</div>
+                    <div onClick={this.atras} className='button'>Atras</div>
                     
                     </div>
                 </div>
@@ -138,20 +147,24 @@ class Consulta extends Component{
         } else {
             return(
                 <div>
-                    <tr>
-                        <th>_id</th>
-                        <th>cityid</th>
-                        <th>name</th>
-                        <th>state</th>
-                        <th>probabilityofprecip</th>
-                        <th>relativehumidity</th>
-                        <th>Lastreporttime</th>
-                        <th>Llueve</th>
+                    <table>
+                    <thead>
+                    <tr className='tabla-titulos'>
+                        <th >_id</th>
+                        <th >cityid</th>
+                        <th >name</th>
+                        <th >state</th>
+                        <th className='celda-titulo'>probabilityofprecip</th>
+                        <th >relativehumidity</th>
+                        <th >Lastreporttime</th>
+                        <th >Llueve</th>
                     </tr>
+                    </thead>
                     {tabla}
+                    </table>
                     <div className='botones'>
                     
-                    <div onClick={this.siguiente} className='button-next'>Siguiente</div>
+                    <div onClick={this.siguiente} className='button'>Siguiente</div>
                     
                     </div>
                 </div>

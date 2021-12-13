@@ -6,9 +6,9 @@ function App() {
   return (
     <div className="App">
       <h1>Aplicacion de evalucacion</h1>
-      <div className="tabla">
+      
       <Consulta />
-      </div>
+      
     </div>
   );
 }
