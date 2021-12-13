@@ -1,4 +1,7 @@
 $color_titulos: aqua;
+$color_titulos_2: black;
+$color_letras_titulos_2: white;
+
 .tabla-titulos {
   background-color: $color_titulos;
 }
@@ -46,4 +49,9 @@ tr:hover td {
 .button:active {
   transition: 0.3s;
   box-shadow: 0px 0px white;
+}
+.second-table {
+  background-color: $color_titulos_2;
+  color: $color_letras_titulos_2;
+  margin: 2% auto;
 }

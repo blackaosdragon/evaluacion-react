@@ -13,10 +13,14 @@ class Consulta extends Component{
             return response.json();
         })
         .then( data => {
+            //console.log(data.results);
+            this.setState({
+                datos: data.results
+            })
             this.setState({
                 data
             })
-            
+            console.log(this.state)
         }).catch( err => {
             console.log(err);
         })
@@ -48,12 +52,27 @@ class Consulta extends Component{
     
     render(){
         
+        let only_id = '';
         let tabla ='';
+        if(this.state.datos===undefined){
+
+        } else {
+            console.log(typeof(this.state.datos))
+            only_id = this.state.datos.map( element => {
+                return(
+                    <tr>
+                        <td>{element._id}</td>
+                    </tr>
+                )
+            })
+            
+        }
         
         if(this.state.data===undefined){
 
         } else {
-            console.log(this.state.data.results)
+            
+            //console.log(this.state.data.results)
             tabla = this.state.data.results.map( (element,index) => {
                 if(index<this.state.pages && index>this.state.pages-10){
                     if(element.probabilityofprecip>=60 || element.relativehumidity>50){
@@ -115,6 +134,24 @@ class Consulta extends Component{
                     <div onClick={this.siguiente} className='button'>Siguiente</div>
                     
                     </div>
+
+                    <table className='second-table'>
+                        <thead >
+                    
+                            <tr>
+                                <th>_id</th>
+                                <th>City ID</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Probabilidad de precipitación</th>
+                                <th>Humedad relativa</th>
+                                <th>fecha</th>
+                                <th>Lluvia</th>
+                            </tr>
+                        
+                        </thead>
+                        {only_id}
+                    </table>
                     
                 </div>
             )
@@ -142,6 +179,23 @@ class Consulta extends Component{
                     <div onClick={this.atras} className='button'>Atras</div>
                     
                     </div>
+
+                    <table className='second-table'>
+                        <thead>
+                            <tr>
+                                <th>_id</th>
+                                <th>City ID</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Probabilidad de precipitación</th>
+                                <th>Humedad relativa</th>
+                                <th>fecha</th>
+                                <th>Lluvia</th>
+                            </tr>
+                        </thead>
+                        {only_id}
+                    </table>
+
                 </div>
             )
         } else {
@@ -167,6 +221,23 @@ class Consulta extends Component{
                     <div onClick={this.siguiente} className='button'>Siguiente</div>
                     
                     </div>
+
+                    <table className='second-table'>
+                        <thead>
+                            <tr>
+                                <th>_id</th>
+                                <th>City ID</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Probabilidad de precipitación</th>
+                                <th>Humedad relativa</th>
+                                <th>fecha</th>
+                                <th>Lluvia</th>
+                            </tr>
+                        </thead>
+                        {only_id}
+                    </table>
+
                 </div>
             )
 
