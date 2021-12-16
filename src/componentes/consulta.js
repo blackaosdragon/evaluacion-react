@@ -4,7 +4,9 @@ import './consulta.scss'
 
 class Consulta extends Component{
     state = {
-        pages: 10
+        pages: 10,
+        'index-start': 0,
+        'index-end': 9
     }
     
     componentDidMount(){
@@ -53,196 +55,41 @@ class Consulta extends Component{
     render(){
         
         let only_id = '';
-        let tabla ='';
         if(this.state.datos===undefined){
 
         } else {
-            console.log(typeof(this.state.datos))
-            only_id = this.state.datos.map( element => {
+
+            //only_id =
+            let list = this.state.datos.slice(this.state['index-start'],this.state['index-end']);
+            only_id = list.map( (element,index) => {
                 return(
-                    <tr>
-                        <td>{element._id}</td>
+                    <tr >
+                        <td > {element._id}</td>
                     </tr>
                 )
             })
-            
         }
-        
-        if(this.state.data===undefined){
-
-        } else {
-            
-            //console.log(this.state.data.results)
-            tabla = this.state.data.results.map( (element,index) => {
-                if(index<this.state.pages && index>this.state.pages-10){
-                    if(element.probabilityofprecip>=60 || element.relativehumidity>50){
-                        return(
-                            <tr>
-                                <td onClick={this.desplegar}>{element._id}</td>
-                                <td>{element.cityid}</td>
-                                <td>{element.name}</td>
-                                <td>{element.state}</td>
-                                <td className='celda-humedad'>{element.probabilityofprecip}</td>
-                                <td>{element.relativehumidity}</td>
-                                <td>{element.lastreporttime}</td>
-                                <td>Sí</td>
-                            </tr>
-                        )
-    
-                    } else {
-                        return(
-                            <tr>
-                                <td>{element._id}</td>
-                                <td>{element.cityid}</td>
-                                <td>{element.name}</td>
-                                <td>{element.state}</td>
-                                <td className='celda-humedad'>{element.probabilityofprecip}</td>
-                                <td>{element.relativehumidity}</td>
-                                <td>{element.lastreporttime}</td>
-                                <td>No</td>
-                            </tr>
-                        )
-    
-                    }
-
-                }
-                //console.log(element._id)
-                
-            })
-
-        }
-        if(this.state.pages>10 && this.state.pages<90){
-            return(
-                <div>
-                    <table>
-                    <thead>
-                        <tr className='tabla-titulos'>
-                            <th >_id</th>
-                            <th >cityid</th>
-                            <th >name</th>
-                            <th >state</th>
-                            <th className='celda-titulo'>probabilityofprecip</th>
-                            <th >relativehumidity</th>
-                            <th>Lastreporttime</th>
-                            <th >Llueve</th>
+        return(
+            <div>
+                <table className='second-table'>
+                    <thead className='second-title'>                    
+                        <tr>
+                            <th>_id</th>
+                            <th>City ID</th>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                            <th>Probabilidad de precipitación</th>
+                            <th>Humedad relativa</th>
+                            <th>fecha</th>
+                            <th>Lluvia</th>
                         </tr>
-                        </thead>
-                        {tabla}
-                    </table>
-                    <div className='botones'>
-                    <div onClick={this.atras} className='button'>Atras</div>
-                    <div onClick={this.siguiente} className='button'>Siguiente</div>
                     
-                    </div>
-
-                    <table className='second-table'>
-                        <thead >
-                    
-                            <tr>
-                                <th>_id</th>
-                                <th>City ID</th>
-                                <th>Nombre</th>
-                                <th>Estado</th>
-                                <th>Probabilidad de precipitación</th>
-                                <th>Humedad relativa</th>
-                                <th>fecha</th>
-                                <th>Lluvia</th>
-                            </tr>
-                        
-                        </thead>
-                        {only_id}
-                    </table>
-                    
-                </div>
-            )
-        } else if(this.state.pages>=90){
-            console.log("Entr!")
-            return(
-                <div>
-                    <table>
-                        <thead>
-                    <tr className='tabla-titulos'>
-                        <th >_id</th>
-                        <th >cityid</th>
-                        <th >name</th>
-                        <th >state</th>
-                        <th className='celda-titulo'>probabilityofprecip</th>
-                        <th >relativehumidity</th>
-                        <th >Lastreporttime</th>
-                        <th >Llueve</th>
-                    </tr>
                     </thead>
-                    {tabla}
-                    </table>
-                    <div className='botones'>
-                    
-                    <div onClick={this.atras} className='button'>Atras</div>
-                    
-                    </div>
-
-                    <table className='second-table'>
-                        <thead>
-                            <tr>
-                                <th>_id</th>
-                                <th>City ID</th>
-                                <th>Nombre</th>
-                                <th>Estado</th>
-                                <th>Probabilidad de precipitación</th>
-                                <th>Humedad relativa</th>
-                                <th>fecha</th>
-                                <th>Lluvia</th>
-                            </tr>
-                        </thead>
-                        {only_id}
-                    </table>
-
-                </div>
-            )
-        } else {
-            return(
-                <div>
-                    <table>
-                    <thead>
-                    <tr className='tabla-titulos'>
-                        <th >_id</th>
-                        <th >cityid</th>
-                        <th >name</th>
-                        <th >state</th>
-                        <th className='celda-titulo'>probabilityofprecip</th>
-                        <th >relativehumidity</th>
-                        <th >Lastreporttime</th>
-                        <th >Llueve</th>
-                    </tr>
-                    </thead>
-                    {tabla}
-                    </table>
-                    <div className='botones'>
-                    
-                    <div onClick={this.siguiente} className='button'>Siguiente</div>
-                    
-                    </div>
-
-                    <table className='second-table'>
-                        <thead>
-                            <tr>
-                                <th>_id</th>
-                                <th>City ID</th>
-                                <th>Nombre</th>
-                                <th>Estado</th>
-                                <th>Probabilidad de precipitación</th>
-                                <th>Humedad relativa</th>
-                                <th>fecha</th>
-                                <th>Lluvia</th>
-                            </tr>
-                        </thead>
-                        {only_id}
-                    </table>
-
-                </div>
-            )
-
-        }
-        
+                    {only_id}
+                </table>
+                
+            </div>
+        )
         
     }
 }
