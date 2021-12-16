@@ -14,15 +14,13 @@ class Consulta extends Component{
         .then( response => {
             return response.json();
         })
-        .then( data => {
-            //console.log(data.results);
+        .then( data => {            
             this.setState({
                 datos: data.results
             })
             this.setState({
                 data
-            })
-            console.log(this.state)
+            })            
         }).catch( err => {
             console.log(err);
         })
@@ -51,6 +49,18 @@ class Consulta extends Component{
     desplegar = () => {
         console.log("Desplegar")
     }
+    handleNext = () => {
+        this.setState({
+            'index-start': this.state['index-start']+10,
+            'index-end': this.state['index-end']+10
+        })
+    }
+    handleBack = () => {
+        this.setState({
+            'index-start': this.state['index-start']-10,
+            'index-end': this.state['index-end']-10
+        })
+    }
     
     render(){
         
@@ -64,7 +74,7 @@ class Consulta extends Component{
             only_id = list.map( (element,index) => {
                 return(
                     <tr >
-                        <td > {element._id}</td>
+                        <td onClick={this.desplegar} key={index}> {element._id}</td>
                     </tr>
                 )
             })
@@ -87,7 +97,11 @@ class Consulta extends Component{
                     </thead>
                     {only_id}
                 </table>
-                
+                <div className='botones'>
+                {this.state['index-start']>1 ? <div className='button' onClick={this.handleBack}>Atras</div>: <div></div>}
+                <div>{this.state['index-start']+1} - {this.state['index-end']+1}</div>
+                {this.state['index-end']<90 ? <div className='button' onClick={this.handleNext}>Siguiente</div>: <div></div>}
+                </div>
             </div>
         )
         
