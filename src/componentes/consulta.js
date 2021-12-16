@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import './consulta.css'
 import './consulta.scss'
 
+
+
 class Consulta extends Component{
     state = {
         pages: 10,
         'index-start': 0,
-        'index-end': 9
+        'index-end': 9,
+        info: 'data'
     }
     
     componentDidMount(){
@@ -18,48 +21,34 @@ class Consulta extends Component{
             this.setState({
                 datos: data.results
             })
-            this.setState({
-                data
-            })            
+                       
         }).catch( err => {
             console.log(err);
         })
-    }
-    siguiente = () => {
-        if(this.state.pages>90){
+    } 
+    componentDidUpdate = () => {
 
-        } else {
-            this.setState({
-                pages: this.state.pages+10
-            })
-        }
-        console.log(this.state.pages)
-        
     }
-    atras = () => {
-        if(this.state.pages<=10){
-
-        } else {
-            this.setState({
-                pages: this.state.pages-10
-            })
-        }
-        console.log(this.state.pages)
-    }
-    desplegar = () => {
-        console.log("Desplegar")
+    desplegar = (event) => {        
+        const selected = event.target.innerText;
+        const encontrado = this.state.datos.find( element => element._id===selected)
+        this.setState({
+            seleccionado: encontrado
+        })
     }
     handleNext = () => {
         this.setState({
             'index-start': this.state['index-start']+10,
             'index-end': this.state['index-end']+10
         })
+        console.log(this.state)
     }
     handleBack = () => {
         this.setState({
             'index-start': this.state['index-start']-10,
             'index-end': this.state['index-end']-10
         })
+        console.log(this.state)
     }
     
     render(){
@@ -72,11 +61,35 @@ class Consulta extends Component{
             //only_id =
             let list = this.state.datos.slice(this.state['index-start'],this.state['index-end']);
             only_id = list.map( (element,index) => {
-                return(
-                    <tr >
-                        <td onClick={this.desplegar} key={index}> {element._id}</td>
-                    </tr>
-                )
+                if(this.state.seleccionado===undefined){
+                    return(
+                        <tr key={index}>
+                            <td onClick={this.desplegar} > {element._id}</td>
+                        </tr>
+                    )
+                } else {
+                    if(this.state.seleccionado===element){
+                        return(
+                            <tr key={index}>
+                            <td onClick={this.desplegar} > {element._id}</td>
+                            <td > {element.cityid}</td>
+                            <td > {element.name}</td>
+                            <td > {element.state}</td>
+                            <td > {element.probabilityofprecip}</td>
+                            <td > {element.relativehumidity}</td>
+                            <td > {element.lastreporttime}</td>
+                            </tr>
+                        )
+                    } else {
+                        return(
+                            <tr key={index}>
+                                <td onClick={this.desplegar} > {element._id}</td>
+                            </tr>
+                        )
+                    }
+                    
+                }
+                
             })
         }
         return(
