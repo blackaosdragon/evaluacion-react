@@ -69,17 +69,35 @@ class Consulta extends Component{
                     )
                 } else {
                     if(this.state.seleccionado===element){
-                        return(
-                            <tr key={index}>
-                            <td onClick={this.desplegar} > {element._id}</td>
-                            <td > {element.cityid}</td>
-                            <td > {element.name}</td>
-                            <td > {element.state}</td>
-                            <td > {element.probabilityofprecip}</td>
-                            <td > {element.relativehumidity}</td>
-                            <td > {element.lastreporttime}</td>
-                            </tr>
-                        )
+                        if(element.probabilityofprecip > 60 || element.relativehumidity > 50){
+                            return(
+                                <tr key={index}>
+                                <td onClick={this.desplegar} > {element._id}</td>
+                                <td > {element.cityid}</td>
+                                <td > {element.name}</td>
+                                <td > {element.state}</td>
+                                <td > {element.probabilityofprecip}</td>
+                                <td > {element.relativehumidity}</td>
+                                <td > {element.lastreporttime}</td>
+                                <td > Sí </td>
+                                </tr>
+                                )
+
+                        } else {
+                            return(
+                                <tr key={index}>
+                                <td onClick={this.desplegar} > {element._id}</td>
+                                <td > {element.cityid}</td>
+                                <td > {element.name}</td>
+                                <td > {element.state}</td>
+                                <td > {element.probabilityofprecip}</td>
+                                <td > {element.relativehumidity}</td>
+                                <td > {element.lastreporttime}</td>
+                                <td > No </td>
+                                </tr>
+                                )
+                        }
+                        
                     } else {
                         return(
                             <tr key={index}>
